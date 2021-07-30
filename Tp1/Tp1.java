@@ -34,22 +34,10 @@ public class Tp1 {
         valorVenda = new double[150];
 
         // pre cadastro de 10 clientes
-        for(int i = 0 ; i <10; i++){
-            clientes[i] = "cliente" + (i+1);
-            endereco[i] = "endereco" + (i+1);
-            telefone[i] = "telefone" + (i+1);
-            quantidadeClientes++;
-        }
-        
+        quantidadeClientes = cadastroInicialClientes(quantidadeClientes, clientes, endereco, telefone );
+
         //pre cadastro de 10 produtos
-        for(int i = 0; i<10; i++ ){
-            nomeProduto[i] = "produto"+(i+1);
-            descricaoProduto[i] = "descrição"+ (i+1);
-            valorCompra[i] = 10*(i+1);
-            porcentagemLucro[i] = 10*(i+1);
-            quantidadeEstoque[i] = i+1;
-            quantidadeProdutos++;
-        }
+        quantidadeProdutos = cadastroInicialProdutos(quantidadeProdutos, quantidadeEstoque, porcentagemLucro, valorCompra, descricaoProduto, nomeProduto);
         
         //início do programa
         System.out.println("bom dia! meu objetivo é automatizar o controle de clientes e produtos! possuo as seguintes funções:");
@@ -94,7 +82,31 @@ public class Tp1 {
         }while(opcaoMenu !=7);
         
     }
-    
+
+    //metodo para cadastro de 10 clientes ficticios
+    public static int cadastroInicialClientes(int quantidadeClientes, String clientes[], String endereco[], String telefone[]){
+        for(int i = 0 ; i <10; i++){
+            clientes[i] = "cliente" + (i+1);
+            endereco[i] = "endereco" + (i+1);
+            telefone[i] = "telefone" + (i+1);
+            quantidadeClientes++;
+        }
+        return quantidadeClientes;
+    }
+
+    //metodo para cadastro de 10 produtos 
+    public static int cadastroInicialProdutos(int quantidadeProdutos, int quantidadeEstoque[], double porcentagemLucro[], double valorCompra[], String descricaoProduto[], String nomeProduto[] ){
+        for(int i = 0; i<10; i++ ){
+            nomeProduto[i] = "produto"+(i+1);
+            descricaoProduto[i] = "descrição"+ (i+1);
+            valorCompra[i] = 10*(i+1);
+            porcentagemLucro[i] = 10*(i+1);
+            quantidadeEstoque[i] = i+1;
+            quantidadeProdutos++;
+        }
+        return quantidadeProdutos;
+    }
+
     // mostra as opçoes do menu para o usuario
     public static void menu(){ 
         System.out.println("----------------------------------");
@@ -380,7 +392,7 @@ public class Tp1 {
                     }
                 }
             }while(idProduto>0);
-            vendas[quantidadeVendas] = "o valor da venda " + (quantidadeVendas + 1) + " para o cliente " + clientes[idCliente]+" é: " + valorVenda[quantidadeVendas];
+            vendas[quantidadeVendas] = "o valor da venda " + (quantidadeVendas + 1) + " para o cliente " + clientes[idCliente-1]+" é: " + valorVenda[quantidadeVendas];
             System.out.println(vendas[quantidadeVendas]);
             
             quantidadeVendas++;
